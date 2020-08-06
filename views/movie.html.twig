@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %} {% block title %} {{ film.titre }}{% endblock %} {% block body%}
+<header class="container-fluid">{% block header %} {{ parent() }} {% endblock %} </header>
+{% block content %}
+<div id="movie_container" class="container-fluid" style="background-image: url('/public/img/photos/{{film.id}}.jpg')">
+    <div id="movie_block" class="container">
+        <div class="row" id="title_block">
+            <h1>{{film['titre']}}</h1>
+        </div>
+        <div class="row">
+            <div id="affiche_block" class="col-5">
+                <img class="img-fluid" src="/public/img/affiches/{{film.id}}.jpg" alt="{{film['titre']}}">
+            </div>
+            <div id="description_block" class="col-7">
+                <ul id="description_list">
+                    <li class="description_item"><strong>Année :</strong> {{ film.annee }} </li>
+
+                    <li class="description_item">
+                        <strong>Genre(s) :</strong> {% for genre in genres %} {{ genre.nom }}. {% endfor %}
+                    </li>
+
+                    <li class="description_item"><strong>Synopsis :</strong> <br> {{ film.synopsis }}</li>
+
+                    <li class="description_item">
+                        <strong>Réalisateur(s) :</strong> {% for real in reals %} {{ real.nom }}. {% endfor %}
+                    </li>
+
+                    <li class="description_item">
+                        <strong>Acteur(s) :</strong> {% for actor in actors %} {{ actor.nom }}. {% endfor %}
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div id="trailer" class="row">
+            <h2 class="col-12">Bande Annonce</h2>
+
+            <iframe class="col-12" src="{{ trailer.chemin }}" height="315" width="560" allowfullscreen="" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+<div id="suggestions">
+    <h2 class="col-12">Vous pourriez aussi aimer : </h2>
+    <div id="suggestion_container">
+        {% for film in suggestions|slice(0,1) %}
+        <div class="movie_item">
+            <a href="/films/{{film.id}}">
+                <div class="movie_affiche" style="background-image: url('/public/img/affiches/{{film.id}}.jpg')"></div>
+            </a>
+            <a class="movie_title" href="/films/{{film.id}}">{{film.titre}}</a></li>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %} {% block footer %} {{ parent() }} {% endblock %} {% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+{% block formMovie %}
+
+<h1 id="addmovie-title">Veuillez remplir le formulaire suivant pour ajouter votre film</h1>
+<form id="movie-form" class="row" method="post" action="processAdd">
+
+    <!-- Titre-->
+    <input type="text" name="titre" class="input" minlenght="2" maxlength="20" placeholder="Titre du film*" value="{{inputs.titre}}" required><br><br>
+        <span> {{ errorExist }} </span>
+
+    <!-- année -->
+    <input type="text" name="annee" class="input" minlenght="2" maxlength="20" placeholder="Année*" value="{{inputs.annee}}" required><br><br>
+        <span> {{ errorAnnee }} </span>
+    <!-- genre -->
+    <input type="text" name="genre" class="input" minlenght="2" maxlength="20" placeholder="Genre*" value="{{inputs.genre}}" required><br><br>
+        <span> {{ errorGenreMessage }} </span>
+
+
+    <!-- Realisateur -->
+    <input type="text" name="realisateurs" class="input" minlenght="2" maxlength="20" placeholder="Realisateur*" value="{{inputs.realisateurs}}" required><br><br>
+        <span> {{ errorRealisateursMessage }} </span>
+
+
+    <!-- Acteur -->
+    <label> Veuillez saisir 3 acteurs ayant joués dans le film et les séparer d'une virgule</label>
+    <input type="text" name="acteurs" class="input" minlenght="2" maxlength="120" placeholder="Acteurs*" value="{{inputs.acteurs}}" required><br><br>
+        <span> {{ error }} </span>
+
+
+    <!-- Synopsis-->
+    <textarea type="textarea" name="synopsis" class="input" minlenght="2" maxlength="500" placeholder="Synopsis*" value="{{inputs.synopsis}}" required></textarea><br><br>
+    <span> {{ errorSynopsis }} </span>
+        <input type="submit" id="btn" value="Envoyer">
+    </form>
+{% endblock %}
